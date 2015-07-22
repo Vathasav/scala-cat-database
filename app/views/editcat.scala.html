@@ -1,0 +1,102 @@
+
+
+@(cat: Cat, catForm: Form[Cat])(implicit messages: Messages)
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterbootstrapinput.render) } 
+
+
+    @main("Cats Database"){
+        
+       
+        <div class = "container">
+        <!-- Form to add new cat into database -->
+        
+        <h2> Edit  @cat.name</h2>
+        
+        @form(routes.Application.updateCat(cat.id.get),'enctype -> "multipart/form-data"){
+        <fieldset>
+         
+            @inputText(catForm("name"), '_label -> "Name of cat",'_help->"No digits or spaces in name")
+           
+            
+            @select(
+                catForm("color"), 
+                 options = options(Colors.list), 
+                '_label -> "Choose appropriate color", '_default -> "-- Choose cat color --",
+                '_showConstraints -> false
+            )
+            
+            
+            @select(
+                catForm("race"), 
+                 options = options(CatBreeds.list), 
+                '_label -> "Select the cat breed", '_default -> "-- Choose cat breed --",
+                '_showConstraints -> false
+            )
+            
+            @select(
+                catForm("gender"), 
+                 options = options(Gender.list), 
+                '_label -> "Gender", '_default -> "-- Choose a gender --",
+                '_showConstraints -> false
+            )
+            
+            <!-- if cat has no picture then ask to upload picture
+         other wise show the picture and ask to change existing picture -->
+         
+         <!-- accept only images -->
+           @if(cat.picture.isEmpty) {
+               
+                <div >
+                 
+                    <label for="Upload new picture">Upload new picture:</label>
+                    
+                    <input type="file" name= "imageFile" accept="image/*">
+                </div>
+                
+            } else {
+                
+                <div style = " padding:20px">
+                 
+                    <label for="Existing picture">Existing picture:</label>
+                    
+                    <img src="@routes.Application.getImage(cat.id.get)" width="80" height="80">  
+                </div>
+                
+                <div >
+                 
+                    <label for="Upload new picture">Upload new picture:</label>
+                    
+                    <input type="file" name= "imageFile" accept="image/*">
+                </div>
+                
+                    
+            }
+       
+       <!-- select color, race and gender from drop-down list -->    
+         
+           </fieldset>
+            
+           
+                
+            <div>
+            
+                <input type="submit" value="Save" class="btn primary"> or 
+                <a href="@routes.Application.cats" class="btn primary">Cancel</a> 
+            
+            </div>  
+            
+            
+        
+            
+        
+
+        }
+        
+        </div>
+        
+    }
+
+           

@@ -1,0 +1,29 @@
+New log file opened at Wed Jul 22 23:22:15 EEST 2015 by 26992@Tamperes-MacBook-Pro.local
+Taking next connection to: 51262
+New client attempting to connect on port: 51263-51262
+  Address = /192.168.0.101:51262
+This client on port 51263 has uuid c5cee436-7951-4211-a41b-9f48e0f45f83 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-c5cee436-7951-4211-a41b-9f48e0f45f83
+Taking next connection to: 51262
+New client attempting to connect on port: 51275-51262
+  Address = /192.168.0.101:51262
+Handshake exception on socket: 51275
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(SocketInputStream.java:189)
+	at java.net.SocketInputStream.read(SocketInputStream.java:121)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at java.io.DataInputStream.readInt(DataInputStream.java:387)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 51262
+New client attempting to connect on port: 51276-51262
+  Address = /192.168.0.101:51262
+This client on port 51276 has uuid 2d3996fe-dee3-4a37-98f6-86295e33004a configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: activator-c5cee436-7951-4211-a41b-9f48e0f45f83, play-fork-run-2d3996fe-dee3-4a37-98f6-86295e33004a
+Taking next connection to: 51262

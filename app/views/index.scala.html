@@ -1,0 +1,83 @@
+
+
+@(cats: List[Cat])
+
+@import helper._ 
+
+
+
+        @main("Cats Database"){
+        
+        
+        <h1 class="main" align="center"> Cat database</h1>
+        
+        <!-- Used bootstrap container -->
+        <div class = "container" >
+	   
+        <table class="computers zebra-striped" >
+            <thead>
+                <tr>
+                    <th>Cat name </th>
+                    <th>Color </th>
+                    <th>Breed </th>
+                    <th>Gender </th>
+                    <th>Image </th>
+                    
+                </tr>
+            </thead>
+            
+            <!-- for each cat display its name, color, race, gender and picture (if available) -->
+            <tbody>
+                @cats.map { cat =>
+                    <tr>
+                        <td>@cat.name</td>
+
+                        <td>@cat.color </td>
+
+                        <td>@cat.race </td>
+                        
+                        <td>@cat.gender </td>
+                        
+                         <td>
+                            @if(cat.picture.isEmpty) {
+                                <em>-</em>
+                            } else {
+                                <img src="@routes.Application.getImage(cat.id.get)" width="80" height="80">  
+                            }
+                        </td>
+
+                         <td>
+                            @form(routes.Application.editCat(cat.id.get)){
+                                <input type="submit" value="Edit" class="btn primary">
+                            }
+                        </td>
+
+
+                        <td>
+                            @form(routes.Application.deleteCat(cat.id.get)){
+                                <input type="submit" value="Delete" class="btn primary" onclick="return confirm('Are you sure you want to delete?')">
+                            }
+                        </td>
+                        
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+     
+        
+        <div>
+         
+            <a class="btn primary" id="add" href="@routes.Application.create()">Add a new cat</a>   
+            
+        </div>
+        
+        </div>
+        
+
+        }
+        
+
+
+
