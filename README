@@ -3,9 +3,9 @@ This is CAT DATABASE Play Scala application
 
 Application allows to manage cat information in the database.
 
-##Front page displays al the available cats in the database
+Front page displays all the available cats in the database
 
-##Actions
+Actions
 1. It supports adding a new cat to database with features (name, color, breed, gender, picture).
 2. Allows editing of cat data.
 3. While editing cat data -- cat can also be completely deleted from the database
