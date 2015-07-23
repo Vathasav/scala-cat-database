@@ -4,6 +4,7 @@
 
 @import helper._
 
+<!-- import constructor from twitterbootstrapinput -->
 @implicitFieldConstructor = @{ FieldConstructor(twitterbootstrapinput.render) } 
 
 
@@ -16,11 +17,13 @@
         <h2> Add new cat </h2>
         
         @form(routes.Application.newCat,'enctype -> "multipart/form-data"){
+        
         <fieldset>
          
             @inputText(catForm("name"), '_label -> "Name of cat",'_help->"No digits or spaces in name")
            
-          
+         <!-- select color, race and gender from drop-down list -->    
+         
             @select(
                 catForm("color"), 
                  options = options(Colors.list), 
@@ -43,8 +46,6 @@
             )
             
        
-       <!-- select color, race and gender from drop-down list -->    
-         
            </fieldset>
             
             <!-- accept only images -->

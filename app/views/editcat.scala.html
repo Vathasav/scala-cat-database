@@ -11,15 +11,16 @@
         
        
         <div class = "container">
-        <!-- Form to add new cat into database -->
+        <!-- Form to edit cat information -->
         
-        <h2> Edit  @cat.name</h2>
+        <h2> Editing cat -- @cat.name</h2>
         
         @form(routes.Application.updateCat(cat.id.get),'enctype -> "multipart/form-data"){
         <fieldset>
          
             @inputText(catForm("name"), '_label -> "Name of cat",'_help->"No digits or spaces in name")
            
+            <!-- select color, race and gender from drop-down list -->    
             
             @select(
                 catForm("color"), 
@@ -43,8 +44,8 @@
                 '_showConstraints -> false
             )
             
-            <!-- if cat has no picture then ask to upload picture
-         other wise show the picture and ask to change existing picture -->
+         <!-- if cat has no picture then ask to upload picture
+         other wise show existing picture and ask to change existing picture -->
          
          <!-- accept only images -->
            @if(cat.picture.isEmpty) {
@@ -58,6 +59,7 @@
                 
             } else {
                 
+                <!-- show existing picture -->
                 <div style = " padding:20px">
                  
                     <label for="Existing picture">Existing picture:</label>
@@ -65,6 +67,7 @@
                     <img src="@routes.Application.getImage(cat.id.get)" width="80" height="80">  
                 </div>
                 
+                <!-- upload new picture -->
                 <div >
                  
                     <label for="Upload new picture">Upload new picture:</label>
@@ -75,11 +78,11 @@
                     
             }
        
-       <!-- select color, race and gender from drop-down list -->    
+      
          
            </fieldset>
             
-           
+           <!-- save or cancel the action -->
                 
             <div>
             
