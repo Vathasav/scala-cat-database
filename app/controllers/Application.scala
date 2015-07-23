@@ -24,7 +24,7 @@ class Application extends Controller {
    /**
    * Describe the cat form used in both add and edit screens.
    */
- val catForm: Form[Cat] = Form(
+    val catForm: Form[Cat] = Form(
      mapping(
         "id" -> ignored(None:Option[Long]),
         "name" -> nonEmptyText(minLength = 2).verifying("Invalid pattern found", { txt =>
@@ -35,7 +35,7 @@ class Application extends Controller {
         "gender"->nonEmptyText,
         "picture"->ignored(Option.empty[Array[Byte]])
      )(Cat.apply)(Cat.unapply)
-)
+    )
 
    // -- Actions
 
@@ -53,7 +53,7 @@ class Application extends Controller {
    */
   def cats = Action {
     Ok(views.html.index(Cat.all()))
-}
+  }
 
   /**
    * Display new cat form
@@ -102,7 +102,7 @@ class Application extends Controller {
     catForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.editcat(Cat.findById(id).get,formWithErrors)),
 
-   cat => {
+    cat => {
       
       // copy new cat from old cat but with new picture
       val newCat = cat.copy(picture = Some(bArray))
@@ -123,7 +123,7 @@ class Application extends Controller {
      catForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.editcat(Cat.findById(id).get, formWithErrors)),
 
-   cat => {
+     cat => {
       
      // get cat from DB
      val catfromDB: Cat = Cat.findById(id).get
@@ -143,11 +143,8 @@ class Application extends Controller {
       Redirect(routes.Application.cats)
     }
     )
-      
-      
-      )
-      
-      
+  )
+
   }
   
   
@@ -159,17 +156,15 @@ class Application extends Controller {
   
   Cat.findById(id).map { cat =>
   
-            val MimeType = "image/png"
-                try {
-                       val imageData: Array[Byte] = cat.picture.get
-                       Ok(imageData).as(MimeType)
-                }
-                catch {
-                   case e: IllegalArgumentException =>
-                    BadRequest("Couldn’t generate image. Error: " + e.getMessage)
-                }
-  
-  
+    val MimeType = "image/png"
+        try {
+               val imageData: Array[Byte] = cat.picture.get
+                Ok(imageData).as(MimeType)
+            }
+        catch {
+                case e: IllegalArgumentException =>
+                BadRequest("Couldn’t generate image. Error: " + e.getMessage)
+            }
       
     }.getOrElse(NotFound)
     
@@ -195,7 +190,7 @@ class Application extends Controller {
     catForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.addcat(formWithErrors)),
 
-   cat => {
+    cat => {
        
       // update newcat from form data but with new picture
       val addCat = cat.copy(picture = Some(bArray))
@@ -221,10 +216,8 @@ class Application extends Controller {
       Redirect(routes.Application.cats)
     }
     )
-      
-      
-      )
-}
+    )
+  }
 
 
 }

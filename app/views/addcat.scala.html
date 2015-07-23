@@ -27,7 +27,7 @@
             @select(
                 catForm("color"), 
                  options = options(Colors.list), 
-                '_label -> "Choose appropriate color", '_default -> "-- Choose cat color --",
+                '_label -> "Choose color of cat", '_default -> "-- Choose cat color --",
                 '_showConstraints -> false
             )
             
@@ -35,7 +35,7 @@
                 catForm("race"), 
                  options = options(CatBreeds.list), 
                 '_label -> "Select the cat breed", '_default -> "-- Choose cat breed --",
-                '_showConstraints -> false
+                '_showConstraints -> false,'_help->"Only popular 10 cat breeds are shown"
             )
             
             @select(
@@ -46,7 +46,7 @@
             )
             
        
-           </fieldset>
+        </fieldset>
             
             <!-- accept only images -->
             <div style = " padding:20px">
